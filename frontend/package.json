@@ -1,0 +1,21 @@
+{
+  "name": "chennai-service-booking",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.5.13",
+    "vuetify": "^3.7.6",
+    "@mdi/font": "^7.4.47"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^6.0.5",
+    "vite-plugin-vuetify": "^2.1.0"
+  }
+}
