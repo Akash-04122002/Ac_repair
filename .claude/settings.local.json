@@ -19,7 +19,14 @@
       "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" -X POST http://localhost:8099/api/booking -H \"Content-Type: application/json\" -d '{\"phone\":\"x\"}')",
       "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:8099/some/spa/route)",
       "Bash(curl -s -X POST http://localhost:8099/api/booking -H \"Content-Type: application/json\" --data-binary @test_booking.json)",
-      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d['message']\\)\")"
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d['message']\\)\")",
+      "Bash(vercel --version)",
+      "Bash(vercel whoami *)",
+      "Bash(NODE_OPTIONS=\"--use-system-ca\" vercel whoami --cwd /e/Ac_repair/frontend)",
+      "Bash(NODE_OPTIONS=\"--use-system-ca\" vercel deploy --prod --yes --cwd /e/Ac_repair/frontend)",
+      "Bash(PORT=8099 go run main.go)",
+      "Bash(PORT=8090 go run main.go)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:8090/)"
     ]
   }
 }
