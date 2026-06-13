@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: ac-repair-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    region: singapore
+    healthCheckPath: /api/config
