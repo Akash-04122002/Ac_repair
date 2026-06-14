@@ -29,9 +29,9 @@
           </v-btn>
         </div>
 
-        <v-window v-else v-model="step">
+        <div v-else>
           <!-- Step 1: Category -->
-          <v-window-item :value="1">
+          <div v-if="step === 1">
             <p class="text-subtitle-1 font-weight-medium mb-3">What do you need?</p>
             <v-row>
               <v-col v-for="c in categories" :key="c.id" cols="12" sm="4">
@@ -47,10 +47,10 @@
                 </v-card>
               </v-col>
             </v-row>
-          </v-window-item>
+          </div>
 
           <!-- Step 2: Service -->
-          <v-window-item :value="2">
+          <div v-if="step === 2">
             <p class="text-subtitle-1 font-weight-medium mb-3">Choose a service</p>
             <v-list v-if="activeCategory" lines="two" select-strategy="single-independent">
               <v-list-item
@@ -67,10 +67,10 @@
                 </template>
               </v-list-item>
             </v-list>
-          </v-window-item>
+          </div>
 
           <!-- Step 3: Date + time -->
-          <v-window-item :value="3">
+          <div v-if="step === 3">
             <p class="text-subtitle-1 font-weight-medium mb-3">Preferred date & time</p>
             <v-text-field
               v-model="form.date"
@@ -84,19 +84,19 @@
             <v-chip-group v-model="form.slot" selected-class="text-white bg-primary" column>
               <v-chip v-for="s in slots" :key="s" :value="s" variant="outlined" filter>{{ s }}</v-chip>
             </v-chip-group>
-          </v-window-item>
+          </div>
 
           <!-- Step 4: Details -->
-          <v-window-item :value="4">
+          <div v-if="step === 4">
             <p class="text-subtitle-1 font-weight-medium mb-3">Your details</p>
             <v-text-field v-model="form.name" label="Full name" variant="outlined" prepend-inner-icon="mdi-account" :error-messages="errors.name" />
             <v-text-field v-model="form.phone" label="Phone number" variant="outlined" prepend-inner-icon="mdi-phone" inputmode="numeric" maxlength="10" :error-messages="errors.phone" />
             <v-text-field v-model="form.area" label="Area / locality in Chennai" variant="outlined" prepend-inner-icon="mdi-map-marker" :error-messages="errors.area" />
             <v-textarea v-model="form.notes" label="Notes (optional)" variant="outlined" rows="2" prepend-inner-icon="mdi-text" />
-          </v-window-item>
+          </div>
 
           <!-- Step 5: Review -->
-          <v-window-item :value="5">
+          <div v-if="step === 5">
             <p class="text-subtitle-1 font-weight-medium mb-3">Review your booking</p>
             <v-list density="comfortable">
               <v-list-item prepend-icon="mdi-wrench" :title="`${form.category} – ${form.service}`" subtitle="Service" />
@@ -108,8 +108,8 @@
             <v-alert type="info" variant="tonal" density="compact" class="mt-2">
               Your chosen time is a <strong>preferred slot</strong>. We’ll confirm or suggest the closest time on WhatsApp.
             </v-alert>
-          </v-window-item>
-        </v-window>
+          </div>
+        </div>
       </v-card-text>
 
       <v-divider v-if="!done" />

@@ -5,15 +5,76 @@ import { buildBookingMessage, buildWaUrl } from './waMessage'
 export const FALLBACK_CONFIG = {
   business: {
     name: 'QuickFix Chennai — Electrical & Plumbing',
+    tagline: 'Trusted electricians & plumbers, at your door across Chennai.',
     whatsapp: '919043050841',
     phone: '+919043050841',
     hours: 'Mon–Sun, 8 AM – 8 PM',
     area: 'All over Chennai',
   },
-  categories: [],
-  reviews: [],
-  areas: [],
-  faq: [],
+  categories: [
+    {
+      id: "electrical",
+      name: "Electrical",
+      icon: "mdi-flash",
+      services: [
+        { name: "Fan installation / repair", price: "₹199 – ₹499" },
+        { name: "Switch & socket repair", price: "₹149 – ₹399" },
+        { name: "Wiring & rewiring", price: "₹499 – ₹2,999" },
+        { name: "MCB / fuse repair", price: "₹199 – ₹599" },
+        { name: "Light & fixture fitting", price: "₹149 – ₹699" },
+        { name: "Inverter / UPS setup", price: "₹399 – ₹999" },
+        { name: "Short-circuit fixing", price: "₹299 – ₹1,499" }
+      ]
+    },
+    {
+      id: "plumbing",
+      name: "Plumbing",
+      icon: "mdi-pipe-wrench",
+      services: [
+        { name: "Pipe leak repair", price: "₹249 – ₹999" },
+        { name: "Tap / faucet repair", price: "₹149 – ₹449" },
+        { name: "Toilet / flush repair", price: "₹299 – ₹899" },
+        { name: "Water tank cleaning", price: "₹699 – ₹1,999" },
+        { name: "Drainage / blockage clearing", price: "₹399 – ₹1,499" },
+        { name: "Geyser installation", price: "₹499 – ₹1,199" },
+        { name: "Bathroom fittings", price: "₹299 – ₹1,999" }
+      ]
+    },
+    {
+      id: "amc",
+      name: "Annual Plans",
+      icon: "mdi-calendar-check",
+      services: [
+        { name: "Home AMC – Basic (4 visits/year)", price: "₹1,999 / year" },
+        { name: "Home AMC – Plus (8 visits/year)", price: "₹3,499 / year" },
+        { name: "Shop / Office AMC", price: "Custom quote" }
+      ]
+    }
+  ],
+  whyUs: [
+    { icon: "mdi-shield-check", title: "Verified professionals", text: "Background-checked, skilled technicians." },
+    { icon: "mdi-clock-fast", title: "On-time arrival", text: "We respect your schedule across Chennai." },
+    { icon: "mdi-cash-check", title: "Transparent pricing", text: "Clear estimates, no hidden charges." },
+    { icon: "mdi-medal", title: "Service warranty", text: "Workmanship backed by a service guarantee." }
+  ],
+  reviews: [
+    { name: "Priya R.", area: "Velachery", rating: 5, text: "Fan and wiring fixed the same day. Polite and neat work." },
+    { name: "Karthik S.", area: "Anna Nagar", rating: 5, text: "Booked on WhatsApp at night, plumber came by 9 AM. Great!" },
+    { name: "Fathima A.", area: "Adyar", rating: 4, text: "Geyser installed quickly. Fair price, will use again." },
+    { name: "Ravi K.", area: "T. Nagar", rating: 5, text: "Drainage blockage cleared fast. Very professional team." }
+  ],
+  areas: [
+    "Velachery", "Adyar", "T. Nagar", "Anna Nagar", "Tambaram", "Porur",
+    "Guindy", "Mylapore", "Perungudi", "OMR", "Sholinganallur", "Vadapalani",
+    "Ambattur", "Chromepet", "Nungambakkam", "Kodambakkam"
+  ],
+  faq: [
+    { q: "How do I book?", a: "Pick a service, choose a preferred time, and tap ‘Book on WhatsApp’. Your booking lands in our WhatsApp and we confirm the slot." },
+    { q: "Which areas do you cover?", a: "All over Chennai — including all the localities listed on this page." },
+    { q: "What are your working hours?", a: "Mon–Sun, 8 AM – 8 PM. For emergencies, message us anytime and we’ll do our best." },
+    { q: "Are the prices fixed?", a: "Prices shown are estimate ranges. The final amount is confirmed after we inspect the issue — no hidden charges." },
+    { q: "Is the time slot guaranteed?", a: "The time you choose is a preferred slot. We confirm or suggest the closest available time over WhatsApp." }
+  ]
 }
 
 export async function fetchConfig() {

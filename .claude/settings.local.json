@@ -26,7 +26,18 @@
       "Bash(NODE_OPTIONS=\"--use-system-ca\" vercel deploy --prod --yes --cwd /e/Ac_repair/frontend)",
       "Bash(PORT=8099 go run main.go)",
       "Bash(PORT=8090 go run main.go)",
-      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:8090/)"
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:8090/)",
+      "Bash(powershell -NoProfile -Command '$root='\\\\''E:\\\\Ac_repair'\\\\''; $exclude='\\\\''\\\\node_modules\\\\|\\\\.git\\\\|\\\\.vercel\\\\|\\\\\\\\bdist\\\\|quickfix\\\\.exe'\\\\''; $files = Get-ChildItem -Path $root -Recurse -File | Where-Object { $_.FullName -notmatch $exclude }; Compress-Archive -Path $files.FullName -DestinationPath $root'\\\\''\\\\Ac_repair.zip'\\\\'' -Force; Get-ChildItem $root'\\\\''\\\\Ac_repair.zip'\\\\'' | Select-Object Name,@{n='\\\\''SizeMB'\\\\'';e={[math]::Round\\($_.Length/1MB,2\\)}}')",
+      "Bash(powershell -NoProfile -Command ' *)",
+      "Bash(powershell -NoProfile -Command \"Add-Type -A System.IO.Compression.FileSystem; [IO.Compression.ZipFile]::OpenRead\\('E:\\\\Ac_repair.zip'\\).Entries | Select-Object -ExpandProperty FullName\")",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}  type=%{content_type}\\\\n\" https://ac-repair-frontend.vercel.app/api/config)",
+      "Bash(curl -s https://ac-repair-frontend.vercel.app/api/config)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}  type=%{content_type}\\\\n\" http://localhost:8090/api/config)",
+      "Bash(curl -sk -o /dev/null -w \"HTTP %{http_code}  type=%{content_type}\\\\n\" https://ac-repair-frontend.vercel.app/api/config)",
+      "Bash(curl -sk https://ac-repair-frontend.vercel.app/api/config)",
+      "Bash(curl -sk -o /dev/null -w \"HTTP %{http_code}  type=%{content_type}\\\\n\" -X POST -H \"Content-Type: application/json\" -d '{\"name\":\"t\",\"phone\":\"+919999999999\",\"area\":\"x\"}' https://ac-repair-frontend.vercel.app/api/booking)",
+      "Bash(docker build *)",
+      "Read(//tmp/**)"
     ]
   }
 }
