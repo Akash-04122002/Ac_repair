@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <v-app>
     <AppHeader :business="config.business" @book="openBooking()" />
 
     <v-main>
       <HeroSection :business="config.business" @book="openBooking()" />
-      <HowItWorks />
       <ServicesSection :categories="config.categories" @book="openBooking" />
+      <HowItWorks />
       <WhyUsSection :items="config.whyUs" :reviews="config.reviews" />
       <AreasSection :areas="config.areas" :area-label="config.business.area" />
       <FaqSection :faq="config.faq" />
@@ -23,7 +23,7 @@
       :prefill="prefill"
       :urgent="urgent"
     />
-  </div>
+  </v-app>
 </template>
 
 <script setup>

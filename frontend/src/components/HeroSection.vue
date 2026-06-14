@@ -24,7 +24,7 @@
               color="secondary"
               class="hero-cta"
               prepend-icon="mdi-calendar-check"
-              @click="$emit('book')"
+              href="#services"
             >Book Now — It's Free</v-btn>
             <v-btn
               size="x-large"
@@ -78,9 +78,9 @@ defineEmits(['book'])
 
 const stats = [
   { value: '2 hrs', label: 'Avg. arrival' },
-  { value: '4.8★', label: 'Customer rating' },
-  { value: '5000+', label: 'Jobs done' },
-  { value: '100%', label: 'All Chennai' },
+  { value: '24 x 7', label: 'Available' },
+  { value: '100+', label: 'Jobs done' },
+  { value: '90%', label: 'All Chennai' },
 ]
 const trust = [
   { icon: 'mdi-shield-check', text: 'Background-verified technicians', color: 'success' },

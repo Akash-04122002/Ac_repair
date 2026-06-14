@@ -157,5 +157,10 @@ watch(() => props.categories, (c) => { if (c.length && !tab.value) tab.value = c
   bottom: 10px;
   right: 10px;
   font-size: .75rem !important;
+  background: rgba(0, 0, 0, 0.72) !important;
+  color: white !important;
+  padding: 6px 10px !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  border-radius: 999px !important;
 }
 </style>

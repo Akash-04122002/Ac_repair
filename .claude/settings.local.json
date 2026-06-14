@@ -37,7 +37,9 @@
       "Bash(curl -sk https://ac-repair-frontend.vercel.app/api/config)",
       "Bash(curl -sk -o /dev/null -w \"HTTP %{http_code}  type=%{content_type}\\\\n\" -X POST -H \"Content-Type: application/json\" -d '{\"name\":\"t\",\"phone\":\"+919999999999\",\"area\":\"x\"}' https://ac-repair-frontend.vercel.app/api/booking)",
       "Bash(docker build *)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(curl -sk -o /dev/null -w \"%{http_code} %{content_type}\\\\n\" \"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=70&auto=format&fit=crop\")"
     ]
   }
 }

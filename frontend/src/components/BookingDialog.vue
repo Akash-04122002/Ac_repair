@@ -18,24 +18,15 @@
 
       <v-card-text style="min-height: 280px">
         <!-- Success state -->
-        <div v-if="done" class="text-center py-6">
-          <v-icon icon="mdi-check-circle" color="success" size="64" class="mb-3" />
-          <h3 class="text-h6 font-weight-bold mb-1">Booking Submitted!</h3>
+        <div v-if="done" class="text-center py-8">
+          <v-icon icon="mdi-whatsapp" color="#25D366" size="64" class="mb-4" />
+          <h3 class="text-h6 font-weight-bold mb-2">Opening WhatsApp…</h3>
           <p class="text-body-2 text-medium-emphasis mb-4">
-            Tap <strong>Send</strong> in WhatsApp. We’ll confirm or propose a new time — you can track it below.
+            Tap <strong>Send</strong> in WhatsApp to confirm your booking. We’ll reply to confirm your time slot.
           </p>
-          <v-btn color="#25D366" variant="flat" :href="waUrl" target="_blank" prepend-icon="mdi-whatsapp" block class="mb-3">
-            Open WhatsApp &amp; Send
+          <v-btn color="primary" variant="flat" :href="waUrl" target="_blank" prepend-icon="mdi-whatsapp">
+            Open WhatsApp again
           </v-btn>
-          <v-btn
-            v-if="statusUrl"
-            color="primary"
-            variant="tonal"
-            :href="statusUrl"
-            target="_blank"
-            prepend-icon="mdi-magnify"
-            block
-          >Track booking status</v-btn>
         </div>
 
         <div v-else>
@@ -182,7 +173,6 @@ const open = computed({
 const step = ref(1)
 const done = ref(false)
 const waUrl = ref('')
-const statusUrl = ref('')
 const loadingLocation = ref(false)
 const locationNote = ref('')
 
@@ -367,13 +357,11 @@ async function getLocation() {
 async function submit() {
   if (!validateDetails(true)) { step.value = 4; return }
   const mapsLink = form.coords ? `https://maps.google.com/?q=${form.coords.replace(' ', '')}` : ''
-  const result = await submitBooking(
+  waUrl.value = await submitBooking(
     { ...form, date: prettyDate.value, phone: '+91' + form.phone, area: `${form.doorNo}, ${form.area}`, mapsLink },
     props.business,
     { urgent: props.urgent }
   )
-  waUrl.value = result.waUrl
-  statusUrl.value = result.statusUrl || ''
   done.value = true
   window.open(waUrl.value, '_blank')
 }

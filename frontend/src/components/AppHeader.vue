@@ -28,14 +28,6 @@
         size="small"
         class="d-none d-sm-flex mr-1"
       >Call</v-btn>
-      <v-btn
-        color="secondary"
-        variant="flat"
-        prepend-icon="mdi-calendar-check"
-        size="small"
-        class="mr-2"
-        @click="$emit('book')"
-      >Book Now</v-btn>
     </template>
   </v-app-bar>
 </template>

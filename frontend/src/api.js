@@ -66,9 +66,9 @@ export const FALLBACK_CONFIG = {
     { name: 'Ravi K.',    area: 'T. Nagar',   rating: 5, text: 'Drainage blockage cleared fast. Very professional team.' },
   ],
   areas: [
-    'Velachery', 'Adyar', 'T. Nagar', 'Anna Nagar', 'Tambaram', 'Porur',
-    'Guindy', 'Mylapore', 'Perungudi', 'OMR', 'Sholinganallur', 'Vadapalani',
-    'Ambattur', 'Chromepet', 'Nungambakkam', 'Kodambakkam',
+    'Manapakkam', 'Ramapuram', 'Kolapakkam', 'Moulivakkam', 'Gerugambakkam',
+    'Valasaravakkam', 'Alwarthirunagar', 'Virugambakkam', 'KK Nagar',
+    'Guindy', 'Porur', 'Karambakkam',
   ],
   faq: [
     { q: 'How do I book?',               a: "Pick a service, choose a preferred time, and tap 'Book on WhatsApp'. Your booking lands in our WhatsApp and we confirm the slot." },
@@ -98,11 +98,11 @@ export async function submitBooking(booking, business, { urgent = false } = {}) 
     })
     if (res.ok) {
       const data = await res.json()
-      if (data.waUrl) return { waUrl: data.waUrl, statusUrl: data.statusUrl || '' }
+      if (data.waUrl) return data.waUrl
     }
   } catch {
     // fall through to local build
   }
   const msg = buildBookingMessage(booking, { urgent })
-  return { waUrl: buildWaUrl(business.whatsapp, msg), statusUrl: '' }
+  return buildWaUrl(business.whatsapp, msg)
 }
