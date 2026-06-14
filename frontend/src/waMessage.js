@@ -12,6 +12,8 @@ export function buildBookingMessage(b, { urgent = false } = {}) {
   if (b.name) lines.push(`Name: ${b.name}`)
   if (b.phone) lines.push(`Phone: ${b.phone}`)
   if (b.area) lines.push(`Area: ${b.area}`)
+  if (b.coords) lines.push(`📍 GPS: ${b.coords}`)
+  if (b.mapsLink) lines.push(`🗺️ Map: ${b.mapsLink}`)
   if (b.notes) lines.push(`Notes: ${b.notes}`)
   lines.push('')
   lines.push('(Sent from website — please confirm the time slot.)')

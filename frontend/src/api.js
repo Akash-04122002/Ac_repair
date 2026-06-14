@@ -1,7 +1,6 @@
 import { buildBookingMessage, buildWaUrl } from './waMessage'
 
-// Fallback content used if the API is unreachable (e.g. free-host cold start).
-// Mirrors backend/config.json so the site is never broken.
+// Mirrors backend/config.json exactly so the site works on Vercel without a backend.
 export const FALLBACK_CONFIG = {
   business: {
     name: 'QuickFix Chennai — Electrical & Plumbing',
@@ -13,68 +12,71 @@ export const FALLBACK_CONFIG = {
   },
   categories: [
     {
-      id: "electrical",
-      name: "Electrical",
-      icon: "mdi-flash",
+      id: 'electrical',
+      name: 'Electrical',
+      icon: 'mdi-flash',
+      image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=70&auto=format&fit=crop',
       services: [
-        { name: "Fan installation / repair", price: "₹199 – ₹499" },
-        { name: "Switch & socket repair", price: "₹149 – ₹399" },
-        { name: "Wiring & rewiring", price: "₹499 – ₹2,999" },
-        { name: "MCB / fuse repair", price: "₹199 – ₹599" },
-        { name: "Light & fixture fitting", price: "₹149 – ₹699" },
-        { name: "Inverter / UPS setup", price: "₹399 – ₹999" },
-        { name: "Short-circuit fixing", price: "₹299 – ₹1,499" }
-      ]
+        { name: 'Fan installation / repair',  price: '₹199 – ₹499',    icon: 'mdi-fan',              image: 'https://images.unsplash.com/photo-1609519479841-5fd3b2884e17?w=800&q=70&auto=format&fit=crop' },
+        { name: 'Switch & socket repair',     price: '₹149 – ₹399',    icon: 'mdi-toggle-switch',    image: 'https://images.unsplash.com/photo-1556217994-22de7face210?w=800&q=70&auto=format&fit=crop' },
+        { name: 'Wiring & rewiring',          price: '₹499 – ₹2,999',  icon: 'mdi-cable-data',       image: 'https://images.unsplash.com/photo-1517373116369-9bdb8cdc9f62?w=800&q=70&auto=format&fit=crop' },
+        { name: 'MCB / fuse repair',          price: '₹199 – ₹599',    icon: 'mdi-fuse',             image: 'https://images.unsplash.com/photo-1576446470246-499c738d1c8e?w=800&q=70&auto=format&fit=crop' },
+        { name: 'Light & fixture fitting',    price: '₹149 – ₹699',    icon: 'mdi-ceiling-light',    image: 'https://images.unsplash.com/photo-1648809895588-c0bd7e06a61c?w=800&q=70&auto=format&fit=crop' },
+        { name: 'Inverter / UPS setup',       price: '₹399 – ₹999',    icon: 'mdi-battery-charging', image: 'https://images.unsplash.com/photo-1576446470246-499c738d1c8e?w=800&q=70&auto=format&fit=crop' },
+        { name: 'Short-circuit fixing',       price: '₹299 – ₹1,499',  icon: 'mdi-lightning-bolt',   image: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=70&auto=format&fit=crop' },
+      ],
     },
     {
-      id: "plumbing",
-      name: "Plumbing",
-      icon: "mdi-pipe-wrench",
+      id: 'plumbing',
+      name: 'Plumbing',
+      icon: 'mdi-pipe-wrench',
+      image: 'https://images.unsplash.com/photo-1676210134188-4c05dd172f89?w=800&q=70&auto=format&fit=crop',
       services: [
-        { name: "Pipe leak repair", price: "₹249 – ₹999" },
-        { name: "Tap / faucet repair", price: "₹149 – ₹449" },
-        { name: "Toilet / flush repair", price: "₹299 – ₹899" },
-        { name: "Water tank cleaning", price: "₹699 – ₹1,999" },
-        { name: "Drainage / blockage clearing", price: "₹399 – ₹1,499" },
-        { name: "Geyser installation", price: "₹499 – ₹1,199" },
-        { name: "Bathroom fittings", price: "₹299 – ₹1,999" }
-      ]
+        { name: 'Pipe leak repair',           price: '₹249 – ₹999',    icon: 'mdi-pipe-leak',        image: 'https://images.unsplash.com/photo-1538474705339-e87de81450e8?w=800&q=70&auto=format&fit=crop' },
+        { name: 'Tap / faucet repair',        price: '₹149 – ₹449',    icon: 'mdi-faucet',           image: 'https://images.unsplash.com/photo-1629078692818-c5a0443f4ae3?w=800&q=70&auto=format&fit=crop' },
+        { name: 'Toilet / flush repair',      price: '₹299 – ₹899',    icon: 'mdi-toilet',           image: 'https://images.unsplash.com/photo-1569597967185-cd6120712154?w=800&q=70&auto=format&fit=crop' },
+        { name: 'Water tank cleaning',        price: '₹699 – ₹1,999',  icon: 'mdi-water',            image: 'https://images.unsplash.com/photo-1594233078955-e1f73a02ebb2?w=800&q=70&auto=format&fit=crop' },
+        { name: 'Drainage / blockage clearing', price: '₹399 – ₹1,499', icon: 'mdi-pipe',            image: 'https://images.unsplash.com/photo-1526898943670-92bfa9f94c12?w=800&q=70&auto=format&fit=crop' },
+        { name: 'Geyser installation',        price: '₹499 – ₹1,199',  icon: 'mdi-water-boiler',     image: 'https://images.unsplash.com/photo-1606340671662-27ee685dd111?w=800&q=70&auto=format&fit=crop' },
+        { name: 'Bathroom fittings',          price: '₹299 – ₹1,999',  icon: 'mdi-shower',           image: 'https://images.unsplash.com/photo-1631889993959-41b4e9c6e3c5?w=800&q=70&auto=format&fit=crop' },
+      ],
     },
     {
-      id: "amc",
-      name: "Annual Plans",
-      icon: "mdi-calendar-check",
+      id: 'amc',
+      name: 'Annual Plans',
+      icon: 'mdi-calendar-check',
+      image: 'https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=800&q=70&auto=format&fit=crop',
       services: [
-        { name: "Home AMC – Basic (4 visits/year)", price: "₹1,999 / year" },
-        { name: "Home AMC – Plus (8 visits/year)", price: "₹3,499 / year" },
-        { name: "Shop / Office AMC", price: "Custom quote" }
-      ]
-    }
+        { name: 'Home AMC – Basic (4 visits/year)', price: '₹1,999 / year', icon: 'mdi-home-outline', image: 'https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=800&q=70&auto=format&fit=crop' },
+        { name: 'Home AMC – Plus (8 visits/year)',  price: '₹3,499 / year', icon: 'mdi-home-heart',   image: 'https://images.unsplash.com/photo-1574359411659-15573a27fd0c?w=800&q=70&auto=format&fit=crop' },
+        { name: 'Shop / Office AMC',               price: 'Custom quote',   icon: 'mdi-store',        image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=70&auto=format&fit=crop' },
+      ],
+    },
   ],
   whyUs: [
-    { icon: "mdi-shield-check", title: "Verified professionals", text: "Background-checked, skilled technicians." },
-    { icon: "mdi-clock-fast", title: "On-time arrival", text: "We respect your schedule across Chennai." },
-    { icon: "mdi-cash-check", title: "Transparent pricing", text: "Clear estimates, no hidden charges." },
-    { icon: "mdi-medal", title: "Service warranty", text: "Workmanship backed by a service guarantee." }
+    { icon: 'mdi-shield-check', title: 'Verified professionals', text: 'Background-checked, skilled technicians.' },
+    { icon: 'mdi-clock-fast',   title: 'On-time arrival',        text: 'We respect your schedule across Chennai.' },
+    { icon: 'mdi-cash-check',   title: 'Transparent pricing',    text: 'Clear estimates, no hidden charges.' },
+    { icon: 'mdi-medal',        title: 'Service warranty',       text: 'Workmanship backed by a service guarantee.' },
   ],
   reviews: [
-    { name: "Priya R.", area: "Velachery", rating: 5, text: "Fan and wiring fixed the same day. Polite and neat work." },
-    { name: "Karthik S.", area: "Anna Nagar", rating: 5, text: "Booked on WhatsApp at night, plumber came by 9 AM. Great!" },
-    { name: "Fathima A.", area: "Adyar", rating: 4, text: "Geyser installed quickly. Fair price, will use again." },
-    { name: "Ravi K.", area: "T. Nagar", rating: 5, text: "Drainage blockage cleared fast. Very professional team." }
+    { name: 'Priya R.',   area: 'Velachery',  rating: 5, text: 'Fan and wiring fixed the same day. Polite and neat work.' },
+    { name: 'Karthik S.', area: 'Anna Nagar', rating: 5, text: 'Booked on WhatsApp at night, plumber came by 9 AM. Great!' },
+    { name: 'Fathima A.', area: 'Adyar',      rating: 4, text: 'Geyser installed quickly. Fair price, will use again.' },
+    { name: 'Ravi K.',    area: 'T. Nagar',   rating: 5, text: 'Drainage blockage cleared fast. Very professional team.' },
   ],
   areas: [
-    "Velachery", "Adyar", "T. Nagar", "Anna Nagar", "Tambaram", "Porur",
-    "Guindy", "Mylapore", "Perungudi", "OMR", "Sholinganallur", "Vadapalani",
-    "Ambattur", "Chromepet", "Nungambakkam", "Kodambakkam"
+    'Velachery', 'Adyar', 'T. Nagar', 'Anna Nagar', 'Tambaram', 'Porur',
+    'Guindy', 'Mylapore', 'Perungudi', 'OMR', 'Sholinganallur', 'Vadapalani',
+    'Ambattur', 'Chromepet', 'Nungambakkam', 'Kodambakkam',
   ],
   faq: [
-    { q: "How do I book?", a: "Pick a service, choose a preferred time, and tap ‘Book on WhatsApp’. Your booking lands in our WhatsApp and we confirm the slot." },
-    { q: "Which areas do you cover?", a: "All over Chennai — including all the localities listed on this page." },
-    { q: "What are your working hours?", a: "Mon–Sun, 8 AM – 8 PM. For emergencies, message us anytime and we’ll do our best." },
-    { q: "Are the prices fixed?", a: "Prices shown are estimate ranges. The final amount is confirmed after we inspect the issue — no hidden charges." },
-    { q: "Is the time slot guaranteed?", a: "The time you choose is a preferred slot. We confirm or suggest the closest available time over WhatsApp." }
-  ]
+    { q: 'How do I book?',               a: "Pick a service, choose a preferred time, and tap 'Book on WhatsApp'. Your booking lands in our WhatsApp and we confirm the slot." },
+    { q: 'Which areas do you cover?',    a: 'All over Chennai — including all the localities listed on this page.' },
+    { q: 'What are your working hours?', a: 'Mon–Sun, 8 AM – 8 PM. For emergencies, message us anytime and we\'ll do our best.' },
+    { q: 'Are the prices fixed?',        a: 'Prices shown are estimate ranges. The final amount is confirmed after we inspect the issue — no hidden charges.' },
+    { q: 'Is the time slot guaranteed?', a: 'The time you choose is a preferred slot. We confirm or suggest the closest available time over WhatsApp.' },
+  ],
 }
 
 export async function fetchConfig() {
@@ -87,9 +89,6 @@ export async function fetchConfig() {
   }
 }
 
-// Submits the booking. Tries the Go API (which validates + logs and returns the
-// wa.me URL). If the server is asleep/unreachable, builds the same URL locally so
-// booking ALWAYS works.
 export async function submitBooking(booking, business, { urgent = false } = {}) {
   try {
     const res = await fetch('/api/booking', {
@@ -99,11 +98,11 @@ export async function submitBooking(booking, business, { urgent = false } = {}) 
     })
     if (res.ok) {
       const data = await res.json()
-      if (data.waUrl) return data.waUrl
+      if (data.waUrl) return { waUrl: data.waUrl, statusUrl: data.statusUrl || '' }
     }
   } catch {
     // fall through to local build
   }
   const msg = buildBookingMessage(booking, { urgent })
-  return buildWaUrl(business.whatsapp, msg)
+  return { waUrl: buildWaUrl(business.whatsapp, msg), statusUrl: '' }
 }
